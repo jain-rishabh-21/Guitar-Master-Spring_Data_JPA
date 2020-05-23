@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -74,7 +75,8 @@ public class ModelRepository {
 //                .setParameter("highest", highest)
 //                .setParameter("wood", "%" + wood + "%").getResultList();
 //        return mods;
-        Pageable page = new PageRequest(0, 2);
+        Sort sort = new Sort(Sort.Direction.ASC, "name");
+        Pageable page = new PageRequest(0, 2, sort);
         return modelJpaRepository.queryByPriceRangeAAndWoodType(lowest, highest, "%" + wood + "%", page);
     }
 
