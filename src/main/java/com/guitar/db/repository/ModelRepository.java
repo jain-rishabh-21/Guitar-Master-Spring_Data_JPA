@@ -51,12 +51,13 @@ public class ModelRepository {
      * Custom finder
      */
     public List<Model> getModelsInPriceRange(BigDecimal lowest, BigDecimal highest) {
-        @SuppressWarnings("unchecked")
-        List<Model> mods = entityManager
-                .createQuery("select m from Model m where m.price >= :lowest and m.price <= :highest")
-                .setParameter("lowest", lowest)
-                .setParameter("highest", highest).getResultList();
-        return mods;
+//        @SuppressWarnings("unchecked")
+//        List<Model> mods = entityManager
+//                .createQuery("select m from Model m where m.price >= :lowest and m.price <= :highest")
+//                .setParameter("lowest", lowest)
+//                .setParameter("highest", highest).getResultList();
+//        return mods;
+        return modelJpaRepository.findByPriceGreaterThanEqualAndPriceLessThanEqual(lowest, highest);
     }
 
     /**
